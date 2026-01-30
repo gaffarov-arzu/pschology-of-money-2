@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paranın Psikolojisi - Zenginlik ve Davranış</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #1a252f 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 30px 90px rgba(0,0,0,0.7);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 50%, #1abc9c 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '🧠';
+            position: absolute;
+            font-size: 350px;
+            opacity: 0.08;
+            top: -120px;
+            left: -80px;
+            transform: rotate(-20deg);
+        }
+
+        .header h1 {
+            font-size: 3.4em;
+            margin-bottom: 18px;
+            text-shadow: 4px 4px 12px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 1;
+            letter-spacing: -1px;
+        }
+
+        .header .subtitle {
+            font-size: 1.5em;
+            opacity: 0.95;
+            margin-bottom: 12px;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .header .author {
+            font-size: 1.1em;
+            opacity: 0.85;
+            margin-top: 15px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #ecf0f1;
+            border-bottom: 4px solid #bdc3c7;
+            overflow-x: auto;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 22px 32px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1.05em;
+            transition: all 0.3s;
+            white-space: nowrap;
+            color: #2c3e50;
+            font-weight: 700;
+            flex: 1;
+            min-width: 170px;
+        }
+
+        .nav-tab:hover {
+            background: #bdc3c7;
+        }
+
+        .nav-tab.active {
+            background: white;
+            color: #3498db;
+            border-bottom: 4px solid #3498db;
+            margin-bottom: -4px;
+        }
+
+        .content {
+            padding: 50px 40px;
+            min-height: 500px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.6s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .lesson-card {
+            background: linear-gradient(135deg, #e8f6f3 0%, #d5f4e6 100%);
+            padding: 35px;
+            margin: 28px 0;
+            border-radius: 18px;
+            border-left: 8px solid #16a085;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .lesson-card h3 {
+            color: #0e6251;
+            margin-bottom: 18px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .lesson-card p {
+            line-height: 1.9;
+            color: #2c3e50;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+        }
+
+        .lesson-card .example {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 4px solid #16a085;
+        }
+
+        .lesson-card .example strong {
+            color: #16a085;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .quote {
+            background: linear-gradient(135deg, #fef9e7 0%, #fcf3cf 100%);
+            padding: 35px;
+            border-radius: 18px;
+            margin: 30px 0;
+            border-left: 8px solid #f39c12;
+            font-style: italic;
+            font-size: 1.3em;
+            color: #2c3e50;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            line-height: 1.85;
+        }
+
+        .principle-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 35px 0;
+        }
+
+        .principle-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+            border-top: 5px solid #3498db;
+            transition: transform 0.3s;
+        }
+
+        .principle-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+        }
+
+        .principle-box h4 {
+            color: #2980b9;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .principle-box p {
+            color: #34495e;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .story-box {
+            background: linear-gradient(135deg, #fdeaea 0%, #fbd5d5 100%);
+            padding: 35px;
+            border-radius: 18px;
+            margin: 30px 0;
+            border-left: 8px solid #e74c3c;
+        }
+
+        .story-box h3 {
+            color: #c0392b;
+            margin-bottom: 18px;
+            font-size: 1.7em;
+        }
+
+        .story-box p {
+            color: #2c3e50;
+            line-height: 1.85;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .takeaway {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #27ae60;
+        }
+
+        .takeaway strong {
+            color: #27ae60;
+            font-size: 1.15em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .behavior-section {
+            background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+            padding: 40px;
+            border-radius: 18px;
+            margin: 30px 0;
+        }
+
+        .behavior-card {
+            background: white;
+            padding: 28px;
+            margin: 20px 0;
+            border-radius: 15px;
+            border-left: 6px solid #5e35b1;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .behavior-card h4 {
+            color: #4527a0;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .behavior-card p {
+            color: #34495e;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .wealth-calculator {
+            background: white;
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+            margin: 30px 0;
+        }
+
+        .input-group {
+            margin: 25px 0;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 12px;
+            color: #2c3e50;
+            font-weight: 700;
+            font-size: 1.15em;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #bdc3c7;
+            border-radius: 12px;
+            font-size: 1.05em;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 20px 55px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.25em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 700;
+            box-shadow: 0 6px 25px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.5);
+        }
+
+        .result-box {
+            background: linear-gradient(135d, #d5f4e6 0%, #a9dfbf 100%);
+            padding: 35px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border: 3px solid #27ae60;
+        }
+
+        .result-box h4 {
+            color: #186a3b;
+            margin-bottom: 25px;
+            font-size: 1.7em;
+        }
+
+        .result-item {
+            padding: 18px 0;
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1.15em;
+        }
+
+        .result-value {
+            color: #186a3b;
+            font-weight: 800;
+            font-size: 1.4em;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fadbd8 0%, #f5b7b1 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 6px solid #cb4335;
+        }
+
+        .warning-box h4 {
+            color: #943126;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin: 30px 0;
+            border-collapse: collapse;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 18px;
+            text-align: left;
+            font-size: 1.15em;
+        }
+
+        .comparison-table td {
+            padding: 18px;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 1.05em;
+            color: #2c3e50;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .insight-box {
+            background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 6px solid #0288d1;
+        }
+
+        .insight-box h4 {
+            color: #01579b;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .insight-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .insight-box li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.7;
+            color: #2c3e50;
+        }
+
+        .insight-box li::before {
+            content: '💡';
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 1024px) {
+            .principle-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Paranın Psikolojisi</h1>
+            <div class="subtitle">Zenginlik, Açgözlülük ve Mutluluk Üzerine Zamansız Dersler</div>
+            <div class="author">Morgan Housel - 2020</div>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('lessons')">20 Ders</button>
+            <button class="nav-tab" onclick="showTab('stories')">Hikayeler</button>
+            <button class="nav-tab" onclick="showTab('behaviors')">Davranışlar</button>
+            <button class="nav-tab" onclick="showTab('calculator')">Yeterlilik Hesabı</button>
+            <button class="nav-tab" onclick="showTab('wisdom')">Pratik Bilgelik</button>
+        </div>
+
+        <div class="content">
+            <!-- 20 Ders Tab -->
+            <div id="lessons" class="tab-content active">
+                <h2 style="color: #3498db; margin-bottom: 40px; font-size: 2.3em;">📚 Paranın 20 Psikolojik Dersi</h2>
+
+                <div class="quote">
+                    "Finans matematikle ilgili değildir. Davranışla ilgilidir. Ve davranış zordur. 
+                    Bir deha olmanız gerekmez - sadece sabırlı olmanız gerekir."
+                </div>
+
+                <div class="lesson-card">
+                    <h3>1. 🎰 Herkes Farklı Oynar</h3>
+                    <p>
+                        Paranıza yaptığınız her şey sizin deneyimlerinize, değerlerinize ve hedeflerinize göre mantıklıdır. 
+                        Başkalarının "çılgınca" dediği şey sizin için mükemmel olabilir.
+                    </p>
+                    <div class="example">
+                        <strong>Örnek:</strong>
+                        <p>Bir day trader için günlük oynaklık fırsattır. Bir emekli için korkunçtur. 
+                        İkisi de haklıdır - çünkü farklı oyunlar oynuyorlar!</p>
+                    </div>
+                    <p style="margin-top: 15px; font-weight: 600; color: #16a085;">
+                        💡 Ders: Başkalarının finansal kararlarını yargılamayın. Kendi oyununuzu oynayın.
+                    </p>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>2. 🍀 Şans ve Risk İkizdir</h3>
+                    <p>
+                        Her başarının ardında biraz şans, her başarısızlığın ardında biraz risk vardır. 
+                        Bill Gates'in başarısı çalışkanlıktır ama aynı zamanda şanslı bir okulda olmaktır. 
+                        Başarısızları tembellikle suçlayamayız - risk de vardır.
+                    </p>
+                    <div class="example">
+                        <strong>Örnek:</strong>
+                        <p>Bill Gates Lakeside okuluna gitti - 1968'de bilgisayara erişimi olan nadir okul. 
+                        Sınıf arkadaşı Kent Evans da aynı şansa sahipti ama genç yaşta dağda öldü. 
+                        Gates şanslı, Evans şanssızdı.</p>
+                    </div>
+                    <p style="margin-top: 15px; font-weight: 600; color: #16a085;">
+                        💡 Ders: Başarınızda şansı, başarısızlığınızda riski kabul edin. Ego ve kendini beğenmişlikten kaçının.
+                    </p>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>3. 🛑 Asla Yeter Demiyor</h3>
+                    <p>
+                        "Yeter" demek modern toplumun en zor becerisidir. Bernie Madoff milyarder ponzi sahtekarlığı 
+                        yaptı. Rajat Gupta Goldman Sachs direktörüyken içeriden bilgi sattı. Neden? Çünkü komşuları 
+                        daha zengindi ve "yeter" demediler.
+                    </p>
+                    <div class="example">
+                        <strong>Örnek:</strong>
+                        <p>Rajat Gupta net değeri $100 milyon iken içeriden bilgi sattı ve hapiste yattı. 
+                        "Yeter" deseydi, özgür, zengin ve saygın olurdu. Ama komşuları milyarder olunca "yeter" demedi.</p>
+                    </div>
+                    <p style="margin-top: 15px; font-weight: 600; color: #16a085;">
+                        💡 Ders: "Yeter" noktanızı belirleyin. Açgözlülük her şeyi mahveder.
+                    </p>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>4. ⏰ Bileşik Faizin Gücü</h3>
+                    <p>
+                        Warren Buffett'in serveti $84.5 milyar. Ama $84.2 milyarı 50 yaşından sonra kazanıldı! 
+                        Sırrı yetenek değil - ZAMAN. 65 yıl boyunca bileşik faiz yaptı.
+                    </p>
+                    <div class="example">
+                        <strong>Örnek:</strong>
+                        <p>Buffett 10 yaşında yatırıma başladı. 30 yaşında $1 milyonu vardı. 
+                        İyi ama harika değil. Sonra 30'dan 90 yaşına kadar devam etti. 
+                        İşte gerçek sır: DEVAM ETMESİ!</p>
+                    </div>
+                    <p style="margin-top: 15px; font-weight: 600; color: #16a085;">
+                        💡 Ders: İyi getiri + Uzun süre = Olağanüstü zenginlik. Sabır en önemli beceridir.
+                    </p>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>5. 💰 Zengin Olmak vs Zengin Kalmak</h3>
+                    <p>
+                        Zengin olmak cesaret, risk alma ve iyimserlik gerektirir. Zengin kalmak ise 
+                        alçakgönüllülük, paranoya ve hayatta kalma gerektirir. İki çok farklı beceridir!
+                    </p>
+                    <div class="example">
+                        <strong>Örnek:</strong>
+                        <p>Jesse Livermore 1920'lerde $100 milyona ulaştı (bugünkü $1.5 milyar). 
+                        10 yıl sonra iflas etti. Risk alarak zengin oldu ama risk alarak kaybetti. 
+                        Zengin kalmayı öğrenemedi.</p>
+                    </div>
+                    <p style="margin-top: 15px; font-weight: 600; color: #16a085;">
+                        💡 Ders: Zengin olmak sadece adım 1. Zengin kalmak için hayatta kalma planı yapın!
+                    </p>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>6. 🎢 Başarı Kuyruğu Olaylardır</h3>
+                    <p>
+                        Yatırımlarınızın çoğu başarısız olacak. Ama birkaç büyük kazanan her şeyi telafi eder ve fazlasını yapar. 
+                        Amazon, Apple, Google... Bunlar bile çoğu projeyi batırdı ama birkaç büyük başarı yetti!
+                    </p>
+                    <div class="example">
+                        <strong>Örnek:</strong>
+                        <p>Russell 3000 endeksinde 1980-2014 arası tüm kazancın sadece %7'si (40 hisse) 
+                        tarafından sağlandı. Geri kalan %93'ü çok az katkı yaptı veya kaybetti. 
+                        Ama o %7 her şeyi değiştirdi!</p>
+                    </div>
+                    <p style="margin-top: 15px; font-weight: 600; color: #16a085;">
+                        💡 Ders: Başarısızlıklar normaldir. Birkaç büyük kazanan bulun ve tutun!
+                    </p>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>7. 🆓 Özgürlük En Büyük Temettü</h3>
+                    <p>
+                        Mutluluğu artırmanın en iyi yolu: Zamanınız üzerinde kontrol! Para bunu satın alabilir. 
+                        Lüks araba mutluluk getirmez - ama istediğiniz zaman kalkıp yürüyüşe çıkabilmek getirir.
+                    </p>
+                    <div class="example">
+                        <strong>Örnek:</strong>
+                        <p>Princeton araştırması: Yıllık $75,000'ın üzerindeki gelir artışı mutluluğu artırmıyor. 
+                        Neden? Çünkü ihtiyaçlar karşılandıktan sonra asıl değer ÖZGÜRLÜKTÜR - 
+                        zamanınızı kontrol edebilmek!</p>
+                    </div>
+                    <p style="margin-top: 15px; font-weight: 600; color: #16a085;">
+                        💡 Ders: Para biriktirin ama asıl hedef özgürlük olsun, lüks değil!
+                    </p>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>8. 🚗 Lüks Arabanın Paradoksu</h3>
+                    <p>
+                        Ferrari süren kişiye saygı duymuyorsunuz - o kişi olarak hayal ediyorsunuz kendinizi! 
+                        O Ferrari'yi alırsanız, siz de başkalarının sizinle ilgileneceğini düşünürsünüz ama 
+                        onlar sadece kendilerini hayal eder!
+                    </p>
+                    <div class="example">
+                        <strong>Örnek:</strong>
+                        <p>"Lamborghini almam için tek neden: İnsanların beni Lamborghini'yle görmesi." 
+                        Ama gerçek: İnsanlar sizi değil, Lamborghini'yi görür ve "Keşke benimki olsa" der!</p>
+                    </div>
+                    <p style="margin-top: 15px; font-weight: 600; color: #16a085;">
+                        💡 Ders: Başkalarını etkilemek için harcama yapmayın - kimse sizi umursamıyor!
+                    </p>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>9. 💎 Servet Görünmeyendir</h3>
+                    <p>
+                        Zenginlik gördüğümüz şeydir (araba, saat, ev). Ama SERVET görmediğimiz şeydir - 
+                        satın alınmamış arabalar, yapılmamış tatiller, harcanamaayan paralar. 
+                        Servet seçenektir, esnekliktir, özgürlüktür!
+                    </p>
+                    <div class="example">
+                        <strong>Örnek:</strong>
+                        <p>Maaşının tamamını harcayan $500K'lık araba sahibi vs maaşının %50'sini biriktiren 
+                        $30K'lık araba sahibi. İkincisi daha zengindir ama ilki daha "zengin görünür"!</p>
+                    </div>
+                    <p style="margin-top: 15px; font-weight: 600; color: #16a085;">
+                        💡 Ders: Zengin GÖRÜNMEK için değil, zengin OLMAK için çalışın!
+                    </p>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>10. 💸 Parayı Biriktirmek Ego Gerektirmez</h3>
+                    <p>
+                        Zengin olmak için yüksek gelir, şans veya miras gerekmez. Sadece alçakgönüllülük gerekir. 
+                        Gideriniz gelirinizden az olduğunda servet birikir. Formül bu kadar basit!
+                    </p>
+                    <div class="example">
+                        <strong>Örnek:</strong>
+                        <p>Ronald Read benzin istasyonu görevlisi ve temizlikçiydi. Öldüğünde $8 milyon bıraktı! 
+                        Nasıl? Mütevazı yaşadı, hisse aldı, hiç satmadı, 70 yıl bekledi. Ego yok, sabır var!</p>
+                    </div>
+                    <p style="margin-top: 15px; font-weight: 600; color: #16a085;">
+                        💡 Ders: Zengin olmak için deha değil, disiplin gerekir!
+                    </p>
+                </div>
+
+                <div class="quote">
+                    "Mali başarı - ne kadar kazandığınız veya ne kadar akıllı olduğunuzla değil - 
+                    nasıl davrandığınızla ilgili yumuşak bir beceridir."
+                </div>
+
+                <div class="insight-box">
+                    <h4>📌 Kalan 10 Ders Özeti</h4>
+                    <ul>
+                        <li><strong>11. Makul > Rasyonel:</strong> Matematiksel olarak en iyi seçenek değil, 
+                        uyuyabileceğiniz seçeneği yapın</li>
+                        <li><strong>12. Sürpriz!</strong> Tarih rehberdir ama gelecek tahmin edilemez. 
+                        Esnek olun, dogmatik değil</li>
+                        <li><strong>13. Hata Payı:</strong> En önemli kural: Hayatta kalın! 
+                        Her zaman plan B, C, D olsun</li>
+                        <li><strong>14. Değişeceksiniz:</strong> 20 yaşındaki hedefler 40'ta değişir. 
+                        Kendinizi köşeye sıkıştırmayın</li>
+                        <li><strong>15. Bedava Öğle Yemeği Yoktur:</strong> Yatırım getirisi bedava değil - 
+                        fiyatı oynaklık, korku, şüphedir</li>
+                        <li><strong>16. Herkesi İkna Edemezsiniz:</strong> Farklı insanlar farklı oyunlar oynar. 
+                        Kendi yolunuzda gidin</li>
+                        <li><strong>17. Negatifliğin Çekiciliği:</strong> Kötü haber hızlı yayılır. 
+                        Kötü haberlere aşırı tepki vermeyin</li>
+                        <li><strong>18. Hiçbir Şey Olduğu Gibi Görünmez:</strong> Başarı hikayeleri 
+                        çabaları ve başarısızlıkları gizler</li>
+                        <li><strong>19. Hepsini Saçma Bulun:</strong> Finansal medyanın %95'i gürültüdür. 
+                        Görmezden gelin</li>
+                        <li><strong>20. İtiraflar:</strong> Yazar kendi hatalarını kabul eder - 
+                        mükemmel değil, sürekli öğreniyor</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Hikayeler Tab -->
+            <div id="stories" class="tab-content">
+                <h2 style="color: #3498db; margin-bottom: 40px; font-size: 2.3em;">📖 İlham Veren Gerçek Hikayeler</h2>
+
+                <div class="quote">
+                    "En iyi dersler hikayelerden gelir. İşte paranın psikolojisini açıklayan 
+                    unutulmaz gerçek hikayeler..."
+                </div>
+
+                <div class="story-box">
+                    <h3>💼 Ronald Read: $8 Milyon Biriktiren Temizlikçi</h3>
+                    <p>
+                        Ronald Read Vermont'ta bir benzin istasyonunda çalıştı ve yarı zamanlı temizlikçi olarak 
+                        emekli oldu. Eski kıyafetler giyerdi, eski arabası vardı, mütevazı evde yaşardı.
+                    </p>
+                    <p>
+                        2014'te 92 yaşında öldüğünde herkes şok oldu: $8 milyon bırakmıştı! Nasıl? 
+                        Basit: Mütevazı yaşadı, hisse aldı (temettü verenler), hiç satmadı, 70 yıl bekledi.
+                    </p>
+                    <p>
+                        Aynı günlerde Richard Fuscone - Harvard MBA'li, Merrill Lynch eski yöneticisi - 
+                        iflas başvurusu yaptı. Lüks ev, pahalı arabalar, yüksek hayat standardı... hepsi bitti.
+                    </p>
+                    <div class="takeaway">
+                        <strong>🎯 Ders:</strong>
+                        Finansal başarı zeka, eğitim veya gelirle değil - davranış ve sabırla ilgilidir. 
+                        Ronald akıllı değildi, sadık mütevazı ve sabırlıydı. Bu yeter!
+                    </div>
+                </div>
+
+                <div class="story-box">
+                    <h3>📉 Büyük Buhran: Deneyimin Gücü</h3>
+                    <p>
+                        1930'ların Büyük Buhranı'nı yaşayan nesil hayat boyu farklı davrandı. 
+                        1950'lerde ekonomi patladı, borsa arttı ama onlar ASLA borsaya güvenmediler.
+                    </p>
+                    <p>
+                        Neden? Çünkü 20 yaşındayken %89 borsa çöküşü gördüler. İş bulamadılar, açlık çektiler. 
+                        Bu travma 70 yaşına kadar sürdü. Matematik onlara "yatırım yapın" dedi ama 
+                        deneyimleri "asla!" dedi.
+                    </p>
+                    <p>
+                        Aynı zamanda, 1950'lerde doğan nesil sadece yükseliş gördü. Onlar için risk yoktu! 
+                        2000'lerde agresif yatırım yaptılar. İki nesil, aynı dünya, tamamen farklı davranış.
+                    </p>
+                    <div class="takeaway">
+                        <strong>🎯 Ders:</strong>
+                        Deneyimleriniz paranıza bakışınızı şekillendirir. Başkalarının "mantıksız" 
+                        davranışlarını yargılamayın - onların deneyimi farklıdır. Kendi oyununuzu oynayın!
+                    </div>
+                </div>
+
+                <div class="story-box">
+                    <h3>🎰 Rajat Gupta: $100 Milyon Yeterli Değildi</h3>
+                    <p>
+                        Rajat Gupta Goldman Sachs yönetim kurulu üyesiydi. Net değeri $100 milyon. 
+                        Saygın, güçlü, zengin. Ama komşusu milyarderdi.
+                    </p>
+                    <p>
+                        Gupta içeriden bilgi satmaya başladı. Yakalandı. Hapse girdi. Serveti, itibarı, 
+                        özgürlüğü - hepsi gitti. Neden? "Yeter" demedi.
+                    </p>
+                    <p>
+                        Bernie Madoff aynı hikaye: Milyarlarca dolar yönetti ama hala daha fazlasını istedi. 
+                        Ponzi şeması kurdu. Sonuç: Hayatının sonuna kadar hapiste.
+                    </p>
+                    <div class="takeaway">
+                        <strong>🎯 Ders:</strong>
+                        "Yeter" noktanızı belirlemezseniz, asla yeterli olmayacak. Sosyal karşılaştırma 
+                        sonsuz bir oyundur. Kendi "yeter" noktanızı belirleyin ve ona sadık kalın!
+                    </div>
+                </div>
+
+                <div class="story-box">
+                    <h3>⏰ Warren Buffett: Zamanın Gücü</h3>
+                    <p>
+                        Warren Buffett'in net değeri $84.5 milyar. İyi yatırımcı olduğu için değil - 
+                        çünkü 75 YIL yatırım yaptı!
+                    </p>
+                    <p>
+                        Buffett 10 yaşında başladı. 30 yaşında $1 milyon vardı (iyi ama harika değil). 
+                        Ama sonra 30'dan 90 yaşına kadar devam etti. $84.2 milyar 50 yaşından sonra geldi!
+                    </p>
+                    <p>
+                        Eğer Buffett 60 yaşında emekli olsaydı, kimse adını bilmezdi. Serveti $25 milyonda 
+                        kalırdı. Sırrı: 30 yıl daha devam etti. Bileşik faiz + Zaman = Mucize!
+                    </p>
+                    <div class="takeaway">
+                        <strong>🎯 Ders:</strong>
+                        İyi getiri önemli ama zamanın gücü daha önemli. %20 getiri 10 yıl vs %10 getiri 50 yıl? 
+                        İkincisi kazanır! Erken başlayın, asla durmayın!
+                    </div>
+                </div>
+
+                <div class="story-box">
+                    <h3>🏦 Long-Term Capital Management: Dehaların İflası</h3>
+                    <p>
+                        LTCM hedge fund'unu Nobel ödüllü ekonomistler ve matematik dahileri kurdu. 
+                        IQ ortalaması 160+. En akıllı insanlar, en gelişmiş modeller.
+                    </p>
+                    <p>
+                        İlk yıllar: %40-50 getiri! Wall Street hayrandı. Sonra 1998'de Rusya krizi geldi. 
+                        Modelleri "bu imkansız" dedi ama oldu. 4 ayda $4.6 milyar kaybettiler. İflas!
+                    </p>
+                    <p>
+                        Zeka yetmedi. Çünkü rasyonel modeller irrasyonel piyasalarda çalışmaz. 
+                        Piyasalar matematikle değil, duygu ve davranışla çalışır.
+                    </p>
+                    <div class="takeaway">
+                        <strong>🎯 Ders:</strong>
+                        Deha olmanız yetmez. Piyasalar insan duygularıyla hareket eder ve duygular 
+                        tahmin edilemez. Alçakgönüllü olun, hata payı bırakın, hayatta kalın!
+                    </div>
+                </div>
+
+                <div class="quote">
+                    "En iyi hikayeler size finans dersi vermez - size insan doğası dersi verir. 
+                    Ve insan doğası değişmez."
+                </div>
+            </div>
+
+            <!-- Davranışlar Tab -->
+            <div id="behaviors" class="tab-content">
+                <h2 style="color: #3498db; margin-bottom: 40px; font-size: 2.3em;">🧩 Para Davranışlarınızı Anlamak</h2>
+
+                <div class="quote">
+                    "Finansal başarı sabit bir hedefe ulaşmakla ilgili değildir. 
+                    Sürekli hareket eden hedefle ömür boyu yaşamakla ilgilidir."
+                </div>
+
+                <div class="behavior-section">
+                    <h3 style="color: #4527a0; margin-bottom: 30px; font-size: 2em;">
+                        🎭 Yaygın Para Davranışları
+                    </h3>
+
+                    <div class="behavior-card">
+                        <h4>1. 📊 Karşılaştırma Oyunu</h4>
+                        <p>
+                            <strong>Davranış:</strong> Kendinizi sürekli başkalarıyla karşılaştırma. 
+                            Komşunuz yeni araba aldı → Siz de almak istiyorsunuz.
+                        </p>
+                        <p style="margin-top: 12px;">
+                            <strong>Neden Zararlı:</strong> Karşılaştırma oyunu sonsuz bir yarıştır. 
+                            Her zaman sizden daha zengin biri vardır. Asla tatmin olmazsınız.
+                        </p>
+                        <p style="margin-top: 12px; font-weight: 600; color: #4527a0;">
+                            ✅ Çözüm: Kendi "yeter" noktanızı belirleyin. Başkalarını değil, kendinizi benchmark yapın!
+                        </p>
+                    </div>
+
+                    <div class="behavior-card">
+                        <h4>2. 🎢 Duygusal Yatırım</h4>
+                        <p>
+                            <strong>Davranış:</strong> Piyasa yükselince heyecan (al!), düşünce korku (sat!). 
+                            Duygularla karar verme.
+                        </p>
+                        <p style="margin-top: 12px;">
+                            <strong>Neden Zararlı:</strong> "Yüksekten al, düşükten sat" formülü ile servet kaybı. 
+                            Çoğu amatör yatırımcının kaderi budur.
+                        </p>
+                        <p style="margin-top: 12px; font-weight: 600; color: #4527a0;">
+                            ✅ Çözüm: Otomatik yatırım sistemi kurun. Duygu değil, plan!
+                        </p>
+                    </div>
+
+                    <div class="behavior-card">
+                        <h4>3. 💸 Lifestyle Inflation (Yaşam Tarzı Enflasyonu)</h4>
+                        <p>
+                            <strong>Davranış:</strong> Gelir arttıkça harcama da artıyor. 
+                            %30 zam → %40 daha fazla harcama.
+                        </p>
+                        <p style="margin-top: 12px;">
+                            <strong>Neden Zararlı:</strong> Hiçbir zaman servet biriktiremezsiz. 
+                            Gelir ne kadar artarsa artsın, hep aynı yerde kalırsınız.
+                        </p>
+                        <p style="margin-top: 12px; font-weight: 600; color: #4527a0;">
+                            ✅ Çözüm: Gelir artışının %50-70'sini kaydedin. Yaşam standardınızı YAVAŞ artırın!
+                        </p>
+                    </div>
+
+                    <div class="behavior-card">
+                        <h4>4. 🎰 Kumar Zihniyeti</h4>
+                        <p>
+                            <strong>Davranış:</strong> "Bu sefer farklı", "Bu hisse %1000 artacak", 
+                            "Kripto ay'a gidecek!" tipi düşünceler.
+                        </p>
+                        <p style="margin-top: 12px;">
+                            <strong>Neden Zararlı:</strong> Birkaç şanslı kazanç sizi cesur yapar, 
+                            sonra büyük kaybedersiniz. Kumar zenginlik yaratmaz.
+                        </p>
+                        <p style="margin-top: 12px; font-weight: 600; color: #4527a0;">
+                            ✅ Çözüm: %90 güvenli, %10 spekülatif portföy. Kumar isteği varsa küçük miktarla!
+                        </p>
+                    </div>
+
+                    <div class="behavior-card">
+                        <h4>5. ⏰ Şimdiciliğin Laneti</h4>
+                        <p>
+                            <strong>Davranış:</strong> Bugünkü zevk > Yarının serveti. 
+                            "Hayat kısa, şimdi yaşa!" zihniyeti.
+                        </p>
+                        <p style="margin-top: 12px;">
+                            <strong>Neden Zararlı:</strong> Bugün $1000 harcamak vs 30 yıl sonra $17,000 almak. 
+                            Çoğu insan bugünü seçer.
+                        </p>
+                        <p style="margin-top: 12px; font-weight: 600; color: #4527a0;">
+                            ✅ Çözüm: Dengeli yaklaşım. Bugünü de yaşa ama geleceği de unutma. 50/50 kural!
+                        </p>
+                    </div>
+
+                    <div class="behavior-card">
+                        <h4>6. 🦄 Optimizm Yanlılığı</h4>
+                        <p>
+                            <strong>Davranış:</strong> "Bana olmaz", "Kontrol ederim", "Ben farklıyım" 
+                            düşünceleri. Aşırı iyimserlik.
+                        </p>
+                        <p style="margin-top: 12px;">
+                            <strong>Neden Zararlı:</strong> Hiç hata payı bırakmıyorsunuz. 
+                            Bir şeyler ters gittiğinde çok sıkıntı yaşıyorsunuz.
+                        </p>
+                        <p style="margin-top: 12px; font-weight: 600; color: #4527a0;">
+                            ✅ Çözüm: Her zaman plan B, C, D olsun. "Hayatta kalmak" 1 numaralı kuraldır!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>🔍 Kendi Davranışlarınızı Analiz Edin</h3>
+                    <p style="margin-bottom: 15px;">
+                        <strong>Son 6 aydaki finansal kararlarınızı düşünün:</strong>
+                    </p>
+                    <div class="example">
+                        <strong>Kendinize sorun:</strong>
+                        <p style="margin-top: 10px;">
+                            • Başkalarını etkilemek için ne kadar harcadım?<br>
+                            • Duygusal kararlar aldım mı? (Korku/Heyecan)<br>
+                            • Gelirim arttığında harcama da arttı mı?<br>
+                            • Bugünkü zevk için gelecekten ne kadar çaldım?<br>
+                            • Risk alırken hata payı bıraktım mı?<br>
+                            • "Yeter" noktamı biliyor muyum?
+                        </p>
+                    </div>
+                    <p style="margin-top: 20px; font-weight: 600; color: #16a085;">
+                        💡 Dürüst cevaplar verirseniz, davranışlarınızı değiştirebilirsiniz!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Hesaplayıcı Tab -->
+            <div id="calculator" class="tab-content">
+                <h2 style="color: #3498db; margin-bottom: 40px; font-size: 2.3em;">🎯 "Yeter" Noktanızı Hesaplayın</h2>
+
+                <div class="quote">
+                    "Finansal başarının tanımı: Kaç paranız olduğu değil, ne kadar paranın size yeterli olduğudur."
+                </div>
+
+                <div class="wealth-calculator">
+                    <h3 style="color: #2c3e50; margin-bottom: 30px; font-size: 1.8em;">
+                        💰 Sizin İçin "Yeter" Ne Demek?
+                    </h3>
+                    <p style="color: #7f8c8d; margin-bottom: 30px; line-height: 1.7;">
+                        Bu hesaplayıcı size gerçekten ne kadar paraya ihtiyacınız olduğunu gösterir. 
+                        Amaç: Sonsuz karşılaştırma oyunundan çıkmak ve kendi "yeter" noktanızı bulmak.
+                    </p>
+
+                    <div class="input-group">
+                        <label>🏠 İdeal Aylık Yaşam Gideriniz (TL) - Mutlu olmanız için yeterli</label>
+                        <input type="number" id="monthlyExpense" placeholder="Örn: 30000" value="30000">
+                    </div>
+
+                    <div class="input-group">
+                        <label>📅 Kaç Yıl Bu Şekilde Yaşamak İstiyorsunuz?</label>
+                        <input type="number" id="yearsNeeded" placeholder="Örn: 30" value="30" min="1" max="60">
+                    </div>
+
+                    <div class="input-group">
+                        <label>📈 Yıllık Güvenli Getiri Oranı (%) - Muhafazakar tahmin</label>
+                        <input type="number" id="safeReturn" placeholder="Örn: 6" value="6" min="0" max="15">
+                    </div>
+
+                    <div class="input-group">
+                        <label>💼 Şu Anki Birikimleriniz (TL)</label>
+                        <input type="number" id="currentSavings" placeholder="Örn: 500000" value="0">
+                    </div>
+
+                    <div class="input-group">
+                        <label>💵 Aylık Tasarruf Tutarınız (TL)</label>
+                        <input type="number" id="monthlySavings" placeholder="Örn: 10000" value="10000">
+                    </div>
+
+                    <button class="btn" onclick="calculateEnough()">Hesapla: Ne Zaman "Yeter"?</button>
+
+                    <div id="enoughResult" style="display: none;">
+                        <div class="result-box">
+                            <h4>🎯 "YETER" ANALİZİNİZ</h4>
+                            <div class="result-item">
+                                <span class="result-label">Yıllık Yaşam Gideriniz:</span>
+                                <span class="result-value" id="annualExpense"></span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">İhtiyacınız Olan Toplam Sermaye:</span>
+                                <span class="result-value" id="totalNeeded"></span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Bu Sermayeden Yıllık Pasif Gelir:</span>
+                                <span class="result-value" id="passiveIncome"></span>
+                            </div>
+                            <div class="result-item" style="border-top: 3px solid #27ae60; padding-top: 20px; margin-top: 15px;">
+                                <span class="result-label" style="font-size: 1.3em;">⏰ "Yeter" Noktasına:</span>
+                                <span class="result-value" style="font-size: 1.6em;" id="yearsToEnough"></span>
+                            </div>
+                            <div id="enoughMessage" style="margin-top: 25px; padding: 25px; background: white; border-radius: 12px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-card" style="margin-top: 40px;">
+                    <h3>💡 "Yeter" Felsefesi</h3>
+                    <p>
+                        <strong>1. Mutluluk Eşiği:</strong> Araştırmalar gösteriyor ki belirli bir gelirin 
+                        (örn: $75K/yıl) üzerindeki artış mutluluğu artırmıyor. "Yeter" noktanızı bulun!
+                    </p>
+                    <p style="margin-top: 12px;">
+                        <strong>2. Karşılaştırma Tuzağı:</strong> Komşunuz milyoner olursa, siz $500K ile 
+                        fakir hissedersiniz. Ama komşunuz $100K'lıksa, $500K ile zengin hissedersiniz. 
+                        Karşılaştırma oyununu oynamayın!
+                    </p>
+                    <p style="margin-top: 12px;">
+                        <strong>3. Özgürlük = Yeter:</strong> "Yeter" dediğinizde özgürsünüz. 
+                        Artık başkalarını etkilemeye çalışmıyorsunuz. Kendi kurallarınızla yaşıyorsunuz.
+                    </p>
+                    <p style="margin-top: 12px;">
+                        <strong>4. Risk Azalır:</strong> "Daha fazla" peşinde koşanlar büyük riskler alır 
+                        ve kaybeder (Rajat Gupta, Madoff). "Yeter" diyenler riski azaltır ve korur.
+                    </p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ "Yeter"i Belirlemediğinizde Ne Olur?</h4>
+                    <p style="margin-bottom: 10px;">
+                        • Sürekli karşılaştırma → Hiçbir zaman tatmin olmama<br>
+                        • Gereksiz risk alma → Kaybetme ihtimali<br>
+                        • Aşırı çalışma → Sağlık ve aile ihmal edilir<br>
+                        • Statü yarışı → Lüks harcamalar, borçlar<br>
+                        • Kayıp fırsatlar → "Daha fazla" için bugünü feda etme
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pratik Bilgelik Tab -->
+            <div id="wisdom" class="tab-content">
+                <h2 style="color: #3498db; margin-bottom: 40px; font-size: 2.3em;">🎓 Pratik Para Bilgeliği</h2>
+
+                <div class="quote">
+                    "Finansal bilgelik sayılar bilmekle değil, davranışları anlamakla gelir."
+                </div>
+
+                <h3 style="color: #2c3e50; margin: 35px 0 25px 0; font-size: 1.9em;">
+                    📋 Morgan Housel'in Kişisel Para Kuralları
+                </h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Kural</th>
+                            <th>Açıklama</th>
+                            <th>Neden Önemli?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Bağımsızlık #1</strong></td>
+                            <td>Zamanı kontrol edebilmek her şeyden önemli</td>
+                            <td>Mutluluğun en büyük kaynağı özgürlüktür</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tasarruf > Gelir</strong></td>
+                            <td>Ne kadar kazandığınız değil, ne kadar sakladığınız önemli</td>
+                            <td>%50 tasarruf %200K gelir > %10 tasarruf %500K gelir</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Düşük Ego</strong></td>
+                            <td>Başkalarını etkilemek için ASLA harcama yapma</td>
+                            <td>Kimse sizi umursamıyor, kendiniz için yaşayın</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Uzun Vade</strong></td>
+                            <td>En az 10 yıl tutacağınız yatırımlar yapın</td>
+                            <td>Bileşik faizin gücü zamanda gizli</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Basit Portföy</strong></td>
+                            <td>Karmaşık stratejiler yerine basit, anlaşılır yatırımlar</td>
+                            <td>Anlamadığınız şey sizi yok eder</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hata Payı</strong></td>
+                            <td>Her zaman plan B, C, D hazır olsun</td>
+                            <td>Hayatta kalmak #1 kural</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Esneklik</strong></td>
+                            <td>Hedefleriniz değişecek, kendinizi köşeye sıkıştırmayın</td>
+                            <td>Değişime açık olmak başarının anahtarı</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Şanstan Emin Ol</strong></td>
+                            <td>Başarınızda şansın rolünü kabul edin</td>
+                            <td>Ego ve kibirden kurtulursunuz</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="lesson-card" style="margin-top: 40px;">
+                    <h3>🎯 Hemen Uygulayabileceğiniz 10 Kural</h3>
+                    <div class="example">
+                        <strong>1. Otomatik Tasarruf:</strong>
+                        <p>Her maaş geldiğinde %20'sini otomatik olarak yatırım hesabına aktar. Görmezseniz harcamazsınız!</p>
+                    </div>
+                    <div class="example" style="margin-top: 15px;">
+                        <strong>2. 24 Saat Kuralı:</strong>
+                        <p>$500+ harcamalar için 24 saat bekle. Duygusal değil, rasyonel karar ver.</p>
+                    </div>
+                    <div class="example" style="margin-top: 15px;">
+                        <strong>3. "Yeter" Listesi:</strong>
+                        <p>Mutlu olmanız için gerçekten neye ihtiyacınız var? Listeleyin. Geri kalan her şey bonus!</p>
+                    </div>
+                    <div class="example" style="margin-top: 15px;">
+                        <strong>4. Sosyal Medya Temizliği:</strong>
+                        <p>Lüks yaşam sergileyen hesapları takip etmeyi bırak. Karşılaştırma durdu = Mutluluk arttı!</p>
+                    </div>
+                    <div class="example" style="margin-top: 15px;">
+                        <strong>5. İndeks Fon Yatırımı:</strong>
+                        <p>Hisse seçmeye çalışma. Düşük maliyetli indeks fonu al, 30 yıl bekle. Basit ve etkili!</p>
+                    </div>
+                    <div class="example" style="margin-top: 15px;">
+                        <strong>6. Acil Durum Fonu:</strong>
+                        <p>6 ay giderinizi karşılayacak nakit bulundur. Güvenlik ağınız = Uykunuzun rahatlığı!</p>
+                    </div>
+                    <div class="example" style="margin-top: 15px;">
+                        <strong>7. Zam Kuralı:</strong>
+                        <p>%10 zam aldın? %5'ini harca, %5'ini kaydet. Yaşam standardı yavaş artsın!</p>
+                    </div>
+                    <div class="example" style="margin-top: 15px;">
+                        <strong>8. Piyasa Haberlerinden Kaçın:</strong>
+                        <p>Günlük piyasa haberleri gürültüdür. Haftada 1 kez portföyünüze bakın, o kadar!</p>
+                    </div>
+                    <div class="example" style="margin-top: 15px;">
+                        <strong>9. Deneyim > Eşya:</strong>
+                        <p>Araba, saat yerine seyahat, eğitim, anılara yatırım yap. Mutluluk buradan gelir!</p>
+                    </div>
+                    <div class="example" style="margin-top: 15px;">
+                        <strong>10. Yıllık Mali Gözden Geçirme:</strong>
+                        <p>Yılda 1 kez: Neredeyim? Nereye gidiyorum? Değişiklik gerekiyor mu? Kendini sorgula!</p>
+                    </div>
+                </div>
+
+                <div class="insight-box" style="margin-top: 35px;">
+                    <h4>🔑 Son Tavsiyeler</h4>
+                    <ul>
+                        <li><strong>Mükemmellik beklemeyin:</strong> %80 iyi plan > %100 mükemmel hiç plan</li>
+                        <li><strong>Karşılaştırma yapmayın:</strong> Tek rakibiniz dünkü kendinizsiniz</li>
+                        <li><strong>Hatalardan öğrenin:</strong> Herkes hata yapar, önemli olan öğrenmek</li>
+                        <li><strong>Sabırlı olun:</strong> Servet bir gecede gelmez, zamanla gelir</li>
+                        <li><strong>Basit tutun:</strong> Karmaşık stratejiler size uygun değil</li>
+                        <li><strong>Kendinize güvenin:</strong> Uzmanlar da bilmiyor, kendi oyununuzu oynayın</li>
+                    </ul>
+                </div>
+
+                <div class="quote">
+                    "Finansal başarı teknik bilgiyle değil, davranışla gelir. Ve davranış her gün 
+                    küçük doğru kararlar vermekle şekillenir. Bugün başlayın!"
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => tab.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function calculateEnough() {
+            const monthlyExpense = parseFloat(document.getElementById('monthlyExpense').value);
+            const yearsNeeded = parseFloat(document.getElementById('yearsNeeded').value);
+            const safeReturn = parseFloat(document.getElementById('safeReturn').value) / 100;
+            const currentSavings = parseFloat(document.getElementById('currentSavings').value);
+            const monthlySavings = parseFloat(document.getElementById('monthlySavings').value);
+
+            if (!monthlyExpense || !yearsNeeded || !safeReturn || monthlySavings === undefined) {
+                alert('Lütfen tüm alanları doldurun!');
+                return;
+            }
+
+            const annualExpense = monthlyExpense * 12;
+            
+            // Calculate total capital needed using withdrawal rate
+            // Using 4% safe withdrawal rule inversed
+            const totalNeeded = annualExpense / safeReturn;
+            
+            const passiveIncome = totalNeeded * safeReturn;
+            
+            // Calculate years to reach the goal
+            const monthlyReturn = safeReturn / 12;
+            const shortfall = totalNeeded - currentSavings;
+            
+            let yearsToEnough;
+            if (shortfall <= 0) {
+                yearsToEnough = 0;
+            } else if (monthlySavings <= 0) {
+                yearsToEnough = Infinity;
+            } else {
+                const months = Math.log((totalNeeded * monthlyReturn / monthlySavings) + 1) / Math.log(1 + monthlyReturn);
+                yearsToEnough = months / 12;
+            }
+
+            // Display results
+            document.getElementById('annualExpense').textContent = formatCurrency(annualExpense);
+            document.getElementById('totalNeeded').textContent = formatCurrency(totalNeeded);
+            document.getElementById('passiveIncome').textContent = formatCurrency(passiveIncome);
+
+            let timeDisplay, message;
+            if (yearsToEnough === 0) {
+                timeDisplay = 'ŞİMDİ! Tebrikler! 🎉';
+                message = `
+                    <h3 style="color: #27ae60; margin-bottom: 15px; font-size: 1.5em;">🎊 "YETER" Noktasına Ulaştınız!</h3>
+                    <p style="color: #2c3e50; font-size: 1.15em; line-height: 1.7;">
+                        Tebrikler! Mevcut birikiminiz ${formatCurrency(currentSavings)} ile yıllık 
+                        ${formatCurrency(annualExpense)} giderinizi karşılayabilirsiniz.<br><br>
+                        <strong style="color: #27ae60;">Artık "yeter" diyebilirsiniz!</strong> 
+                        Daha fazla biriktirmeye devam edebilir veya hayatınızın tadını çıkarabilirsiniz.
+                    </p>
+                `;
+            } else if (yearsToEnough === Infinity || isNaN(yearsToEnough)) {
+                timeDisplay = 'Hesaplanamıyor';
+                message = `
+                    <h3 style="color: #e74c3c; margin-bottom: 15px;">⚠️ Tasarruf Artırılmalı</h3>
+                    <p style="color: #2c3e50; font-size: 1.1em;">
+                        Mevcut tasarruf oranıyla hedefe ulaşmanız çok uzun sürecek veya imkansız.<br><br>
+                        <strong>Öneriler:</strong><br>
+                        • Aylık tasarruf miktarını artırın<br>
+                        • Giderlerinizi azaltın<br>
+                        • Gelir artırıcı yan işler bulun
+                    </p>
+                `;
+            } else {
+                const displayYears = Math.ceil(yearsToEnough);
+                timeDisplay = `${displayYears} Yıl`;
+                
+                if (yearsToEnough <= 5) {
+                    message = `
+                        <h3 style="color: #27ae60; margin-bottom: 15px; font-size: 1.4em;">🚀 Harika İlerleme!</h3>
+                        <p style="color: #2c3e50; font-size: 1.1em; line-height: 1.7;">
+                            Sadece ${displayYears} yıl içinde "yeter" noktanıza ulaşabilirsiniz!<br><br>
+                            Bu süre sonunda ${formatCurrency(totalNeeded)} sermayeniz olacak ve 
+                            yılda ${formatCurrency(passiveIncome)} pasif gelir elde edeceksiniz.<br><br>
+                            <strong style="color: #27ae60;">Devam edin!</strong> Hedefinize çok yakınsınız.
+                        </p>
+                    `;
+                } else if (yearsToEnough <= 15) {
+                    message = `
+                        <h3 style="color: #3498db; margin-bottom: 15px; font-size: 1.4em;">✅ İyi Bir Plan</h3>
+                        <p style="color: #2c3e50; font-size: 1.1em; line-height: 1.7;">
+                            ${displayYears} yılda "yeter" noktanıza ulaşabilirsiniz.<br><br>
+                            Bu süre sonunda finansal özgürlüğünüz olacak: ${formatCurrency(totalNeeded)} 
+                            sermaye ve yılda ${formatCurrency(passiveIncome)} pasif gelir.<br><br>
+                            <strong>Hızlandırma için:</strong><br>
+                            • Aylık tasarruf miktarını %20-30 artırın<br>
+                            • Giderlerinizi optimize edin<br>
+                            • Ek gelir kaynakları yaratın
+                        </p>
+                    `;
+                } else {
+                    message = `
+                        <h3 style="color: #f39c12; margin-bottom: 15px; font-size: 1.4em;">⏰ Uzun Vade</h3>
+                        <p style="color: #2c3e50; font-size: 1.1em; line-height: 1.7;">
+                            ${displayYears} yıl makul bir süre ama hızlandırılabilir!<br><br>
+                            <strong>Süreyi kısaltmak için:</strong><br>
+                            • Yaşam giderlerinizi gözden geçirin - gerçekten bu kadar mı gerekli?<br>
+                            • Tasarruf oranını önemli ölçüde artırın<br>
+                            • Daha yüksek getirili (ama güvenli) yatırımları araştırın<br>
+                            • Gelir artışı sağlayacak becerilere yatırım yapın
+                        </p>
+                    `;
+                }
+            }
+
+            document.getElementById('yearsToEnough').textContent = timeDisplay;
+            document.getElementById('enoughMessage').innerHTML = message;
+            document.getElementById('enoughResult').style.display = 'block';
+            document.getElementById('enoughResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('tr-TR', {
+                style: 'currency',
+                currency: 'TRY',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+    </script>
+</body>
+</html>
